@@ -1,0 +1,29 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+int main() {
+    int b[3]; int ans = 0;
+    
+    for (int i = 0; i<3; i++) {
+        cin >> b[i];
+    }
+    
+    if (b[0]!=b[1] and b[0]!=b[2] and b[1]!=b[2]) {
+        while (b[0] > b[1] or b[1] > b[2]) {
+            if (b[0] > b[1]) {
+                swap(b[0],b[1]);
+                ans++;
+            }
+            if (b[1] > b[2]) {
+                swap(b[2],b[1]);
+                ans++;
+            }
+        }
+    } else {
+        ans--;
+    }
+    
+    cout << ans;
+    return 0;
+}

@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+#define ll long long
+using std::gcd;
+using namespace std;
+
+ll bsta(vector<ll>& a, ll n, ll m) {
+    ll l=0, r=a[n-1];
+    ll sum = 0;
+
+    while (l < r) {
+        ll mid = l + (r-l+1) / 2;
+        sum = 0;
+        for (ll i = 0; i < n; i++) {
+            if (a[i] > mid) {
+                sum += a[i] - mid;
+            }
+        }
+        if (sum >= m) {
+            l = mid;
+        } else { 
+            r = mid - 1;
+        }
+    }
+    return l;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll n, m; cin >> n >> m;
+    vector<ll> a(n);    
+    for (ll i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    sort(a.begin(), a.end());
+
+    ll l = bsta(a, n, m);
+
+    ll sum = 0;
+    for (ll i = 0; i < n; i++) {
+        if (a[i] > l) {
+            sum += a[i] - l;
+        }
+    }
+    if (sum < m && l == 0) {
+        l--;
+    }
+    cout << l << "\n";
+
+    return 0;
+}
